@@ -438,7 +438,7 @@ void pc_popwarnings(void)
 {
   void *p;
   if (warnstack.next==NULL) {
-    error(26,"#pragma warning push");   /* no matching "#pragma warning push" */
+    // error(26,"#pragma warning push");   /* no matching "#pragma warning push" */ /* useless */
     return;                             /* nothing to do */
   } /* if */
   p=warnstack.next;
@@ -454,8 +454,8 @@ SC_FUNC void warnstack_init(void)
 SC_FUNC void warnstack_cleanup(void)
 {
   struct s_warnstack *cur,*next;
-  if (warnstack.next!=NULL)
-    error(1,"#pragma warning pop","-end of file-");
+  /* if (warnstack.next!=NULL)
+    error(1,"#pragma warning pop","-end of file-"); */ /* useless */
   for (cur=warnstack.next; cur!=NULL; cur=next) {
     next=cur->next;
     free(cur);
